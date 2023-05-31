@@ -8,7 +8,7 @@ CREATE TABLE Filme (
 	filmID int NOT NULL IDENTITY,
 	Titel varchar(100),
 	Jahr int,
-	St¸ckzahl int,
+	St√ºckzahl int,
 	Regisseur varchar(100),
 	genre_FK int
 );
@@ -28,7 +28,7 @@ CREATE TABLE Ausleihen (
 	film_FK int,
 	kunde_FK int,
 	Ausleihdatum date,
-	R¸ckgabedatum date
+	R√ºckgabedatum date
 );
 CREATE TABLE Bewertung (
 	berwertungID int NOT NULL IDENTITY,
@@ -64,6 +64,7 @@ BEGIN
 
 	SET @new_id = SCOPE_IDENTITY();
 END;
+GO
 DROP PROCEDURE IF EXISTS addGenre;
 GO
 CREATE PROCEDURE addGenre
@@ -88,32 +89,32 @@ CREATE PROCEDURE addFilm
 	@new_id INT OUTPUT
 AS
 BEGIN
-	INSERT INTO Filme (Titel, Jahr, St¸ckzahl, Regisseur, genre_FK)
+	INSERT INTO Filme (Titel, Jahr, St√ºckzahl, Regisseur, genre_FK)
 	VALUES (@titel, @jahr, @stueckzahl, @regisseur, @genre_fk);
 
 	SET @new_id = SCOPE_IDENTITY();
 END;
 GO
-EXEC addKunde 'Max Mustermann', 'Musterstraﬂe 1, 12345 Musterstadt', '0123456789', 1, 0;
+EXEC addKunde 'Max Mustermann', 'Musterstra√üe 1, 12345 Musterstadt', '0123456789', 1, 0;
 EXEC addKunde 'Peter Example', 'Bachleer 1, 12345 Muster', '0123456789', 1, 0;
 EXEC addKunde 'Elias Amstein', 'Willisau 1, 5302 Willsa', '01345635789', 1, 0;
 EXEC addKunde 'Ghiath Sardat', 'Bachstrasse 1, 5938 Menznau', '5575246767', 1, 0;
-EXEC addKunde 'Anna Schmidt', 'Hauptstraﬂe 7, 45678 Beispielstadt', '01761234567', 1, 0;
-EXEC addKunde 'Peter M¸ller', 'Neue Straﬂe 12, 98765 Musterhausen', '0157123456', 0, 0;
+EXEC addKunde 'Anna Schmidt', 'Hauptstra√üe 7, 45678 Beispielstadt', '01761234567', 1, 0;
+EXEC addKunde 'Peter M√ºller', 'Neue Stra√üe 12, 98765 Musterhausen', '0157123456', 0, 0;
 EXEC addKunde 'Julia Fischer', 'Am Markt 5, 65432 Beispielort', '0160123456', 1, 0;
-EXEC addKunde 'Hans Wagner', 'Hofstraﬂe 2, 56789 Musterdorf', '0176123456', 0, 0;
+EXEC addKunde 'Hans Wagner', 'Hofstra√üe 2, 56789 Musterdorf', '0176123456', 0, 0;
 EXEC addKunde 'Sabine Mayer', 'Dorfplatz 1, 23456 Beispielhausen', '01571234567', 1, 0;
-EXEC addKunde 'Janine Schulz', 'Schulstraﬂe 3, 34567 Musterheim', '0160123456', 0, 0;
+EXEC addKunde 'Janine Schulz', 'Schulstra√üe 3, 34567 Musterheim', '0160123456', 0, 0;
 EXEC addKunde 'Fritz Berger', 'Bachweg 4, 78901 Beispielberg', '0176123456', 1, 0;
-EXEC addKunde 'Tanja Keller', 'Burgstraﬂe 2, 23456 Musterburg', '01571234567', 0, 0;
+EXEC addKunde 'Tanja Keller', 'Burgstra√üe 2, 23456 Musterburg', '01571234567', 0, 0;
 EXEC addKunde 'Andreas Lehmann', 'Wiesenweg 7, 34567 Beispielwiese', '0160123456', 1, 0;
 EXEC addKunde 'Maria Schmidt', 'Kirchplatz 3, 45678 Musterkirch', '0176123456', 0, 0;
 EXEC addKunde 'Robert Schulze', 'Am Hang 8, 78901 Beispielhang', '01571234567', 1, 0;
 EXEC addKunde 'Lisa Meier', 'Birkenweg 2, 23456 Musterbirke', '0160123456', 0, 0;
-EXEC addKunde 'J¸rgen Krause', 'Lindenstraﬂe 6, 34567 Beispielstadt', '0176123456', 1, 0;
-EXEC addKunde 'Marina Schuster', 'Hochstraﬂe 9, 45678 Musterhoch', '01571234567', 0, 0;
-EXEC addKunde 'Julia M¸ller', 'Hauptstraﬂe 10, 12345 Berlin', '0172-1234567', 1, 0;
-EXEC addKunde 'Thomas Schmidt', 'Musterstraﬂe 123, 45678 M¸nchen', '0162-9876543', 0, 0;
+EXEC addKunde 'J√ºrgen Krause', 'Lindenstra√üe 6, 34567 Beispielstadt', '0176123456', 1, 0;
+EXEC addKunde 'Marina Schuster', 'Hochstra√üe 9, 45678 Musterhoch', '01571234567', 0, 0;
+EXEC addKunde 'Julia M√ºller', 'Hauptstra√üe 10, 12345 Berlin', '0172-1234567', 1, 0;
+EXEC addKunde 'Thomas Schmidt', 'Musterstra√üe 123, 45678 M√ºnchen', '0162-9876543', 0, 0;
 GO
 SELECT * FROM Kunde;
 
