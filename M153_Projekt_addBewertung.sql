@@ -26,4 +26,5 @@ BEGIN
         VALUES (@film_FK, @kunde_FK, @Bewertung);
         SET @new_id = SCOPE_IDENTITY();
     END;
+	SELECT * FROM Bewertung WHERE berwertungID = @new_id;
 END;

@@ -34,4 +34,5 @@ BEGIN
         RAISERROR('Ungültiger Wert für @new_id.', 16, 1);
         RETURN;
     END;
+	SELECT * FROM Filme WHERE filmID = @new_id;
 END;

@@ -23,4 +23,5 @@ BEGIN
         RAISERROR('Ungültiger Wert für @new_id.', 16, 1);
         RETURN;
     END;
+	SELECT * FROM Genre WHERE genreID = @new_id;
 END;

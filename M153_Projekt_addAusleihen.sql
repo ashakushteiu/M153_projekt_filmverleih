@@ -31,4 +31,5 @@ BEGIN
         RAISERROR('Ungültiger Wert für @new_id.', 16, 1);
         RETURN;
     END;
+	SELECT * FROM Ausleihen WHERE ausleihenID = @new_id;
 END;
