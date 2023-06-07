@@ -12,14 +12,7 @@ CREATE PROCEDURE addFilm
     @new_id INT OUTPUT
 AS
 BEGIN
-    IF @new_id = 0
-    BEGIN
-        INSERT INTO Filme (Titel, Jahr, Stückzahl, Regisseur, genre_FK)
-        VALUES (@titel, @jahr, @stueckzahl, @regisseur, @genre_fk);
-
-        SET @new_id = SCOPE_IDENTITY();
-    END
-    ELSE IF ISNUMERIC(@new_id) = 1
+    IF EXISTS (SELECT 1 FROM Filme WHERE filmID = @new_id)
     BEGIN
         UPDATE Filme SET
             Titel = @titel,
@@ -31,8 +24,15 @@ BEGIN
     END
     ELSE
     BEGIN
+        INSERT INTO Filme (Titel, Jahr, Stückzahl, Regisseur, genre_FK)
+        VALUES (@titel, @jahr, @stueckzahl, @regisseur, @genre_fk);
+        SET @new_id = SCOPE_IDENTITY();
+    END;
+	SELECT * FROM Filme WHERE filmID = @new_id;
+
+    IF @new_id = 0 OR @new_id IS NULL
+    BEGIN
         RAISERROR('Ungültiger Wert für @new_id.', 16, 1);
         RETURN;
     END;
-	SELECT * FROM Filme WHERE filmID = @new_id;
 END;

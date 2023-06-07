@@ -8,9 +8,13 @@ RETURNS FLOAT
 AS
 BEGIN
     DECLARE @durchschnitt FLOAT;
+    
     SELECT @durchschnitt = AVG(Bewertung)
     FROM Bewertung
     WHERE film_FK = @filmID;
-    
+
+    IF @durchschnitt IS NULL
+        SET @durchschnitt = 0;
+
     RETURN @durchschnitt;
 END;
